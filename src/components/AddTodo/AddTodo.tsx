@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, FormEventHandler, useRef, useState } from 'react';
 import { TodoItemType } from '../TodoList/TodoList';
-
+import { v4 as uuidv4 } from "uuid";
 
 export default function AddTodo({onAdd}: {onAdd: (item: TodoItemType) => void}) {
     const [text, setText] = useState('');
@@ -9,27 +9,23 @@ export default function AddTodo({onAdd}: {onAdd: (item: TodoItemType) => void}) 
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-      console.log(text ,' text')
       e.preventDefault();
       if (text.trim().length === 0) {
         return;
       }
-      onAdd({id: new Date().toString(), text, status: 'active'});
+      onAdd({id: uuidv4(), text, status: 'active'});
       setText('');
     }
 
     return (
       <form onSubmit={handleSubmit}>
-        <input 
-        type='text' 
-        placeholder='Add Todo' 
-        value={text}
-        onChange={handleChange}
+        <input
+          type="text"
+          placeholder="Add Todo"
+          value={text}
+          onChange={handleChange}
         />
-        <button
-        >
-          Add
-        </button>
+        <button>Add</button>
       </form>
     );
 }
