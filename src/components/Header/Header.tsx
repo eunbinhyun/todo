@@ -1,5 +1,6 @@
 import React from "react";
 import { FilterType } from '../../App';
+import styles from './Header.module.css'
 
 interface props {
   filters: FilterType[],
@@ -9,7 +10,7 @@ interface props {
 
 export default function Header({ filters, filter, onFilterChange }: props) {
   return (
-    <header>
+    <header className={styles.header}>
       <ul>
         {filters.map((value, index) => (
           <li key={index}>
